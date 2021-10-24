@@ -18,7 +18,7 @@ interface IMessage {
   id: string;
 }
 
-const messagesQueue: IMessage[] = []
+const messagesQueue: IMessage[] = [];
 
 const socket = io('http://localhost:4000');
 
@@ -40,13 +40,22 @@ export function MessageList() {
       }
     }, 3000);
 
-  }, [])
+  }, []);
 
   useEffect(() => {
     api.get<IMessage[]>('/messages/last3').then(response => {
       setLast3Messages(response.data);
     });
-  }, [])
+
+    const url = window.location.href;
+    const hasMessageParam = url.includes('?message=');
+
+    if (hasMessageParam) {
+      const [urlWithoutToken, token] = url.split('?message=');
+
+      window.history.pushState({}, '', urlWithoutToken);
+    }
+  }, []);
 
   return (
     <div className={styles.messageListWrapper}>

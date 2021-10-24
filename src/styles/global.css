@@ -21,11 +21,11 @@ body {
 }
 
 *::-webkit-scrollbar-track-piece {
-  background-color: #3b3b3b;
+  background-color: #121214;
   border-radius: 6px;
 }
 
 *::-webkit-scrollbar-thumb:vertical {
-  background-color: #121214;
+  background-color: #3b3b3b;
   border-radius: 6px;
 }
